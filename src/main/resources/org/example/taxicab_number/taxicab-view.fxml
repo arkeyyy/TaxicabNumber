@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" spacing="10" prefWidth="760" prefHeight="640"
+      fx:controller="org.example.taxicab_number.TaxicabController">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <Label text="Taxicab Number" prefHeight="36" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <HBox alignment="BOTTOM_LEFT" spacing="12">
+        <VBox spacing="4" HBox.hgrow="ALWAYS">
+            <Label text="Upper limit (num)" labelFor="${upperLimitField}"/>
+            <TextField fx:id="upperLimitField" text="10000"/>
+        </VBox>
+        <VBox spacing="4" prefWidth="120" minWidth="120" maxWidth="120">
+            <Label text="Threads (cnt)" labelFor="${threadCountField}"/>
+            <TextField fx:id="threadCountField" text="4"/>
+        </VBox>
+        <Button fx:id="startButton" text="Start" defaultButton="true" prefWidth="80" minWidth="80"
+                onAction="#startSearch"/>
+        <Button fx:id="stopButton" text="Stop" prefWidth="80" minWidth="80" disable="true"
+                onAction="#stopSearch"/>
+    </HBox>
+    <Label fx:id="errorLabel" managed="false" visible="false" wrapText="true" style="-fx-text-fill: #a42121;"/>
+    <Separator/>
+    <Label fx:id="statusLabel" text="Ready. Finished threads: 0 of 0." wrapText="true"/>
+    <Label text="Thread progress" style="-fx-font-weight: bold;"/>
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS" minHeight="60">
+        <FlowPane fx:id="workerPane" hgap="12" vgap="12">
+            <padding>
+                <Insets top="12" right="12" bottom="12" left="12"/>
+            </padding>
+        </FlowPane>
+    </ScrollPane>
+    <Label text="Taxicab numbers" labelFor="${resultsArea}" style="-fx-font-weight: bold;"/>
+    <TextArea fx:id="resultsArea" editable="false" wrapText="true" prefHeight="70" minHeight="70" maxHeight="70"/>
+    <VBox>
+        <Label fx:id="taxicabCountLabel" text="Taxicab numbers: 0"/>
+        <Label fx:id="otherCountLabel" text="Other numbers: 0"/>
+        <Label fx:id="totalCountLabel" text="Total checked: 0"/>
+    </VBox>
+</VBox>
